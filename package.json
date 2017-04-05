@@ -23,7 +23,7 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/fis-spriter-csssprites-group/-/fis-spriter-csssprites-group-0.3.19.tgz",
+  "_resolved": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.4.tgz",
   "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
   "_shrinkwrap": null,
   "_spec": "hilosprite",
@@ -35,7 +35,7 @@
       }
   ],
   "bugs": {
-    "url": "https://github.com/mudoo/fis-spriter-csssprites-group/issues"
+    "url": "https://github.com/huangwenming/fis-spriter-hilosprite/issues"
   },
   "dependencies": {
     "images": "3.0.0"
@@ -47,7 +47,7 @@
   },
   "dist": {
     "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
-    "tarball": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.1.tgz"
+    "tarball": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.4.tgz"
   },
   "homepage": "https://github.com/huangwenming/fis-spriter-hilosprite#readme",
   "keywords": [
@@ -74,5 +74,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.1"
+  "version": "0.0.4"
 }
