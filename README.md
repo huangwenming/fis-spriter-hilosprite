@@ -79,7 +79,6 @@ this.gameImages = {
 	hand: this.queue.get('hand').content,
 	arrow: this.queue.get('arrow').content
 }
-this.queue.add(resources);
 ```
 原来的csssprite插件无法针对该情况进行sprite处理，所以对hilosprite对csssprite做了改造，如下：
 ```javascript
@@ -96,7 +95,6 @@ this.gameImages = {
 	hand: {img: this.queue.get('hand').content, rect: this.queue.get('hand').rect},
 	arrow: {img: this.queue.get('arrow').content, rect: this.queue.get('arrow').rect}
 }
-this.queue.add(resources);
 ```
 主要是hilosprite插件一旦发现图片的src上带有__hilosprite=，就会进行sprite分组处理，然后给出该图片在sprite图片的区域，用rect属性来表示；
 ```javascript
@@ -105,5 +103,4 @@ var resources = [
 	{id: 'hand', src: "/caractivity/games/static/images/newCar/snakeScene1_game-sprite_1_z_98da4ba.png", rect: [0, 400, 125, 82]},
 	{id: 'arrow', src: "/caractivity/games/static/images/newCar/snakeScene1_game-sprite_1_z_98da4ba.png", rect: [466, 0, 38, 85]},
 ];
-this.queue.add(resources);
 ```
