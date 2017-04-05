@@ -1,0 +1,78 @@
+{
+  "_args": [
+    [
+      "fis-spriter-hilosprite",
+      "/Users/baidu/projects/baidu/map-car/fe-game"
+    ]
+  ],
+  "_from": "fis-spriter-hilosprite@latest",
+  "_id": "fis-spriter-hilosprite@0.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/fis-spriter-hilosprite",
+  "_nodeVersion": "4.5.0",
+  "_npmVersion": "3.8.5",
+  "_requested": {
+    "name": "hilosprite",
+    "raw": "hilosprite",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/fis-spriter-csssprites-group/-/fis-spriter-csssprites-group-0.3.19.tgz",
+  "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
+  "_shrinkwrap": null,
+  "_spec": "hilosprite",
+  "_where": "/Users/baidu/projects/baidu/map-car/fe-game",
+  "maintainers": [
+      {
+          "name": "huangwenming",
+          "email": "1205597228@qq.com"
+      }
+  ],
+  "bugs": {
+    "url": "https://github.com/mudoo/fis-spriter-csssprites-group/issues"
+  },
+  "dependencies": {
+    "images": "3.0.0"
+  },
+  "description": "针对HTML5游戏引擎Hilo的基于fis的csssprite，支持分组合并图片，合并路径指定",
+  "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "dist": {
+    "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
+    "tarball": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.1.tgz"
+  },
+  "homepage": "https://github.com/huangwenming/fis-spriter-hilosprite#readme",
+  "keywords": [
+    "hilo",
+    "fis",
+    "node-images",
+    "node-pngcrush",
+    "csssprites",
+    "css",
+    "pngcrush",
+    "png",
+    "jpeg",
+    "gif"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "fis-spriter-hilosprite",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangwenming/fis-spriter-hilosprite.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
