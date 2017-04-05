@@ -1,13 +1,9 @@
 # fis-spriter-hilosprite
 
-基于FIS的csssprites，由[fis-spriter-csssprites](https://github.com/fex-team/fis-spriter-csssprites) 修改而来，具体说明请访问原项目了解
+针对Hilo的基于FIS的csssprites，由[fis-spriter-csssprites](https://github.com/fex-team/fis-spriter-csssprites) 修改而来，具体说明请访问原项目了解
 
 ### 特性
-在官方基础上，添加支持图片分组合并、@media处理、合并路径指定、rem支持  
-
-####@media处理
-样式中存在的媒体查询，往往是需要做响应式兼容，大多数情况下需要跟其他图片分开处理，如retina处理。  
-所以，将**@media**当作单独的一部分样式处理，生成的css也写入到@media中，完美解决原先合并处理后生成的样式混乱问题。
+结合[Hilo](https://github.com/hiloteam/Hilo)使用图片的实际情况，对原有csssprites插件进行改造，支持Hilo素材类中的图片分组合并、合并路径指定
 
 <table>
     <tr>
@@ -28,34 +24,38 @@
 
 ### 配置
 
-* 启用 fis-spriter-csssprites 插件
+* 启用 fis-spriter-hilosprite 插件
 
 ```javascript
 fis.match('::package', {
-    spriter: fis.plugin('csssprites-group')
+    spriter: fis.plugin('hilosprite')
 });
 ```
 
 * 其他设置，更多详细设置请参考[fis-spriter-csssprites](https://github.com/fex-team/fis-spriter-csssprites)
 
 ```javascript
-fis.config.set('settings.spriter.csssprites-group', {
-	//图片缩放比例
+fis.config.set('settings.spriter.hilosprite', {
+	// 图片缩放比例
 	scale: 1,
-	//1rem像素值
-	rem: 50,
-    //图之间的边距
+    // 表示图片最后输出的矩形区域不带单位（如px和rem）
+    units: 'none',
+	// 1rem像素值，为空时表示使用px
+	rem: '',
+    // 图之间的边距
     margin: 10,
-    //使用矩阵排列方式，默认为线性`linear`
+    // 使用矩阵排列方式，默认为线性`linear`
     layout: 'matrix',
-    //合并图片存到/img/
+    // 合并图片存到/img/
     to: '/img'
 });
-
+// hilosprite插件主要针对js文件进行处理
 fis
-.match('vue/*.css', {
+.match('game/assert.js', {
 	// 这里的spriteTo为最高优先匹配，会覆盖全局的to设置
-	spriteTo : 'img/pkg'
+	spriteTo : 'img/pkg',
+	// 表示对文件进行hilosprite处理
+	useHilosprite: true
 })
 ```
 
@@ -63,43 +63,47 @@ fis
 
 > `spriteTo` 作为文件的to设置，为最高优先匹配，与`to`一样支持相对、绝对路径
 
-### rem自动识别
-目前支持在特有情况下自动识别rem，并根据settings.rem转换单位
-
-* 当background-size使用rem为单位时，如下：
-
-```css
-.icon {
-	background: url('img/icon.png?__sprite') no-repeat;
-	background-size: .5rem .5rem;
-}
+### 代码效果
+原来的csssprite主要针对css中的图片进行sprite处理；而Hilo开发过程中，素材一般通过assert类进行管理，一般通过指定图片src向loadqueue添加素材；
+```javascript
+var resources = [
+	// 新手提示
+	{id: 'hand', src: __uri('../../../static/images/snake/hand.png')},
+	{id: 'arrow', src: __uri('../../../static/images/snake/arrow.png')}
+];
+this.queue.add(resources);
 ```
-
-* 当background-size:contain时、且windth、height使用rem作为单位，如下：
-
-```css
-.icon {
-	display: inline-block;
-	width: .5rem;
-	height: .5rem;
-	background: url('img/icon.png?__sprite') no-repeat;
-	background-size: contain;
+然后在资源加载完毕时获取图片
+```javascript
+this.gameImages = {
+	hand: this.queue.get('hand').content,
+	arrow: this.queue.get('arrow').content
 }
+this.queue.add(resources);
 ```
-
-> 以上两个例子是等价的，都会使用rem作为单位处理
-
-对于层叠的样式，因为条件复杂，无法正确识别上下文，所以不支持组合的样式background-size:contain匹配rem，如下：
-
-```css
-.icon {
-	display: inline-block;
-	width: .5rem;
-	height: .5rem;
-}
-.icon-1 {
-	background: url('img/icon.png?__sprite') no-repeat;
-	background-size: contain;
-}
+原来的csssprite插件无法针对该情况进行sprite处理，所以对hilosprite对csssprite做了改造，如下：
+```javascript
+var resources = [
+	// 新手提示
+	{id: 'hand', src: __uri('../../../static/images/snake/hand.png?__hilosprite=game-sprite')},
+	{id: 'arrow', src: __uri('../../../static/images/snake/arrow.png?__hilosprite=game-sprite')}
+	];
+this.queue.add(resources);
 ```
-> 这种情况是无法识别成功的
+获取图片
+```javascript
+this.gameImages = {
+	hand: {img: this.queue.get('hand').content, rect: this.queue.get('hand').rect},
+	arrow: {img: this.queue.get('arrow').content, rect: this.queue.get('arrow').rect}
+}
+this.queue.add(resources);
+```
+主要是hilosprite插件一旦发现图片的src上带有__hilosprite=，就会进行sprite分组处理，然后给出该图片在sprite图片的区域，用rect属性来表示；
+```javascript
+var resources = [
+	// 新手提示
+	{id: 'hand', src: "/caractivity/games/static/images/newCar/snakeScene1_game-sprite_1_z_98da4ba.png", rect: [0, 400, 125, 82]},
+	{id: 'arrow', src: "/caractivity/games/static/images/newCar/snakeScene1_game-sprite_1_z_98da4ba.png", rect: [466, 0, 38, 85]},
+];
+this.queue.add(resources);
+```
