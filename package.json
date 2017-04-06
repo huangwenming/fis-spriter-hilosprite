@@ -6,7 +6,7 @@
     ]
   ],
   "_from": "fis-spriter-hilosprite@latest",
-  "_id": "fis-spriter-hilosprite@0.0.1",
+  "_id": "fis-spriter-hilosprite@0.0.5",
   "_inCache": true,
   "_installable": true,
   "_location": "/fis-spriter-hilosprite",
@@ -23,7 +23,7 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.4.tgz",
+  "_resolved": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.5.tgz",
   "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
   "_shrinkwrap": null,
   "_spec": "hilosprite",
@@ -47,7 +47,7 @@
   },
   "dist": {
     "_shasum": "afb855c0bcec2693d473b583fe30523f7b876d74",
-    "tarball": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.4.tgz"
+    "tarball": "https://registry.npmjs.org/fis-spriter-hilosprite/-/fis-spriter-hilosprite-0.0.5.tgz"
   },
   "homepage": "https://github.com/huangwenming/fis-spriter-hilosprite#readme",
   "keywords": [
@@ -74,5 +74,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.4"
+  "version": "0.0.5"
 }

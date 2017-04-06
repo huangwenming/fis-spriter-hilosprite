@@ -11,11 +11,11 @@
         <th>说明</th>
     </tr>
     <tr>
-        <td>?__sprite</td>
+        <td>?__hilosprite</td>
         <td>标识图片要做合并</td>
     </tr>
     <tr>
-        <td>?__sprite=group</td>
+        <td>?__hilosprite=group</td>
         <td>标识图片合并到"group_(x|y|z).png"</td>
     </tr>
 </table>
